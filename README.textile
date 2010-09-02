@@ -1,0 +1,28 @@
+<h1>About</h1>
+node-memcached is a simple way to connect and interact with a memcached server using Node.JS.
+
+<h1>How to Use</h1>
+<pre>
+var m = require('./node-memcached');
+
+m.connect('localhost', 11211, function() {
+	m.get('some_key', function(data) {
+		console.log(data);
+	});
+	
+	m.set('diff_key', {some:'data'}, 43200, function() {
+		console.log('stored!');
+	});
+	
+	m.increment('numeric_data', 2, function(new_val) {
+		console.log('incremented to ' + new_val);
+	});
+	
+	m.delete('bad_key');
+});
+</pre>
+
+<h1>What Needs to be Done</h1>
+* Lots of testing
+* Error handling
+* Addition of a few more memcached commands such as append, prepend, etc.
